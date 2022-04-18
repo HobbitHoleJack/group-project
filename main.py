@@ -1,0 +1,170 @@
+# waterfall group code, 4/14/22
+import string
+import random
+from time import sleep
+
+
+def main():  # return option number
+    print(
+        "\n1: Text to Number \n2: Text to Binary \n3: Multiples of Number \n4: Text Cipher \n5: random CS fun fact"
+    )
+    while True:
+        print("\nenter an option below")
+        try:
+            opt = int(input("\n"))
+            if 0 < opt <= 5:
+                break
+        except:
+            pass
+    return opt
+
+
+def text_cipher():  # Jack's function - I love this library so much now -
+    #https://docs.python.org/3/library/string.html
+    print(
+        "\nNote: This will only properly work with messages made out of letters and space.\n"
+    )
+    while True:
+        message = input("\nenter message: ")
+        text = message.lower()
+        doing = input("\nare you encoding or decoding this message? [encode] or [decode] ")
+        try:
+            if doing == "encode":
+                shift = 3
+              # a string of the alphabet, both uppercase and lowercase
+                alphabet = string.ascii_letters
+              # move the alphabet over dependant on our shift (3)
+                shifted_alphabet = alphabet[shift:] + alphabet[:shift]
+              # creates a translation table -
+              # https://docs.python.org/3/library/stdtypes.html?highlight=maketrans#str.maketrans
+                table = str.maketrans(alphabet, shifted_alphabet)
+              # translate the message into the shifted alphabet with the translation table we just made
+                print("encrypted text:", message.translate(table))
+                break
+
+            elif doing == "decode":  # same process as encoding except,
+                shift = -3  # the shift is reversed!
+                # (you can clap now)
+                alphabet = string.ascii_letters
+                shifted_alphabet = alphabet[shift:] + alphabet[:shift]
+                table = str.maketrans(alphabet, shifted_alphabet)
+                print("decrypted text:", message.translate(table))
+                break
+
+            else:
+                print("\ninvalid choice\n")
+        except:  # if someone throws special characters in that break the cipher
+            print("please only use letters and space")
+
+
+def text_to_number():  # Alana
+    num = {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4,
+        "e": 5,
+        "f": 6,
+        "g": 7,
+        "h": 8,
+        "i": 9,
+        "j": 10,
+        "k": 11,
+        "l": 12,
+        "m": 13,
+        "n": 14,
+        "o": 15,
+        "p": 16,
+        "q": 17,
+        "r": 18,
+        "s": 19,
+        "t": 20,
+        "u": 21,
+        "v": 22,
+        "w": 23,
+        "x": 24,
+        "y": 25,
+        "z": 26,
+        " ": " - "
+    }
+    while True:
+      message = input("\nPlease enter a message you would like to convert to numbers: ").lower()
+      message2 = ""
+      try:
+        for i in message:
+          message2 += str(num[i])
+          message2 += " "
+        print(message2)
+        break
+      except:
+        print("\nplease only input letters")
+
+def text_to_binary():
+    Alph = {
+        "a": "01100001",
+        "b": "01100010",
+        "c": "01100011",
+        "d": "01100100",
+        "e": "01100101",
+        "f": "01100110",
+        "g": "01100111",
+        "h": "01101000",
+        "i": "01101001",
+        "j": "01101010",
+        "k": "01101011",
+        "l": "01101100",
+        "m": "01101101",
+        "n": "01101110",
+        "o": "01101111",
+        "p": "01110000",
+        "q": "01110001",
+        "r": "01110010",
+        "s": "01110011",
+        "t": "01110100",
+        "u": "01110101",
+        "v": "01110110",
+        "w": "01110111",
+        "x": "01111000",
+        "y": "01111001",
+        "z": "01111010",
+        " ": "00100000"
+    }
+
+
+def multiples_of_num():
+    pass
+
+
+def fun_fact():
+  with open("funfacts.txt") as f:
+    lines = f.readlines()
+    print("\n")
+    print(random.choice(lines))
+
+
+# runtime
+if __name__ == '__main__':
+    while True:
+        sleep(.5)
+        choice = main()
+
+        if choice == 1:
+            text_to_number()
+
+        elif choice == 2:
+            text_to_binary()
+
+        elif choice == 3:
+            multiples_of_num()
+
+        elif choice == 4:
+            text_cipher()
+
+        elif choice == 5:
+            fun_fact()
+          
+        elif choice == 6: # reserved for Shale
+            pass
+
+        elif choice == 7: # reserved for Shale
+            pass
