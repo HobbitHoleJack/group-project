@@ -2,17 +2,17 @@
 import string
 import random
 from time import sleep
-
+import datetime
 
 def main():  # return option number
     print(
-        "\n1: Text to Number \n2: Text to Binary \n3: Multiples of Number \n4: Text Cipher \n5: random CS fun fact"
+        "\n1: Text to Number \n2: Text to Binary \n3: Multiples of Number \n4: Text Cipher \n5: Random CS fun fact \n6: DNA to RNA \n7: How many days left in the school year \n8: Exit"
     )
     while True:
-        print("\nenter an option below")
+        print("\nEnter an option below:")
         try:
             opt = int(input("\n"))
-            if 0 < opt <= 5:
+            if 0 < opt <= 8:
                 break
         except:
             pass
@@ -25,9 +25,9 @@ def text_cipher():  # Jack's function - I love this library so much now -
         "\nNote: This will only properly work with messages made out of letters and space.\n"
     )
     while True:
-        message = input("\nenter message: ")
+        message = input("\nEnter message: ")
         text = message.lower()
-        doing = input("\nare you encoding or decoding this message? [encode] or [decode] ")
+        doing = input("\nAre you encoding or decoding this message? [encode] or [decode] ")
         try:
             if doing == "encode":
                 shift = 3
@@ -39,7 +39,7 @@ def text_cipher():  # Jack's function - I love this library so much now -
               # https://docs.python.org/3/library/stdtypes.html?highlight=maketrans#str.maketrans
                 table = str.maketrans(alphabet, shifted_alphabet)
               # translate the message into the shifted alphabet with the translation table we just made
-                print("encrypted text:", message.translate(table))
+                print("Encrypted text:", message.translate(table))
                 break
 
             elif doing == "decode":  # same process as encoding except,
@@ -48,13 +48,13 @@ def text_cipher():  # Jack's function - I love this library so much now -
                 alphabet = string.ascii_letters
                 shifted_alphabet = alphabet[shift:] + alphabet[:shift]
                 table = str.maketrans(alphabet, shifted_alphabet)
-                print("decrypted text:", message.translate(table))
+                print("Decrypted text:", message.translate(table))
                 break
 
             else:
-                print("\ninvalid choice\n")
+                print("\nInvalid choice\n")
         except:  # if someone throws special characters in that break the cipher
-            print("please only use letters and space")
+            print("Please only use letters and space")
 
 
 def text_to_number():  # Alana
@@ -97,7 +97,7 @@ def text_to_number():  # Alana
         print(message2)
         break
       except:
-        print("\nplease only input letters")
+        print("\nPlease only input letters.")
 
 def text_to_binary():
     Alph = {
@@ -130,9 +130,31 @@ def text_to_binary():
         " ": "00100000"
     }
 
+    while True:
+      message = input("\nPlease enter a message you would like to convert to binary: ").lower()
+      message2 = ""
+      try:
+        for i in message:
+          message2 += str(Alph[i])
+          message2 += " "
+        print(message2)
+        break
+      except:
+        print("\nPlease only input letters.")
+        
+        
+def multiples_of_num(): #Abhash
+    # inputting two numbers, ex. 5,7, should return 7 multiples of 5
+  mult_num = int(input("Enter the number: "))
+  amnt = int(input("Enter the desired amount of multiples: "))
 
-def multiples_of_num():
-    pass
+  print(amnt, "multiples of", mult_num, ": ")
+  for i in range(1, amnt+1): #The +1 makes sure its the desired amount each time
+    print(mult_num*i, end =" ")
+  print("\n")
+
+    
+
 
 
 def fun_fact():
@@ -140,6 +162,64 @@ def fun_fact():
     lines = f.readlines()
     print("\n")
     print(random.choice(lines))
+
+
+def timeleftschool():
+  today = datetime.date.today()
+  end = datetime.date(2022, 6, 20)
+  #print(end)
+  #print(today)
+  diff = (end - today)
+  diff = str(diff)
+  diff = diff[:7]
+  #print(diff)
+  
+  print(diff,"left before school gets out")
+
+
+def print_menu(): #Shale
+    print("===================")
+    print("1: DNA to RNA")
+    print("0: Exit the program")
+
+dna_to_rna_dict = dict()
+dna_to_rna_dict['C'] = 'G'
+dna_to_rna_dict['A'] = 'U'
+dna_to_rna_dict['G'] = 'C'
+dna_to_rna_dict['T'] = 'A'
+def dna_to_rna(dna_seq):
+    rna_seq = ""
+    # iterate each character in the DNA sequences
+    for dna_char in dna_seq:
+        # check if the character is valid
+        if dna_char in dna_to_rna_dict.keys():
+            # convert each character from DNA to RNA using the dictionary
+            rna_seq += dna_to_rna_dict[dna_char]
+        else:
+            # did not recognize the character
+            rna_seq += '?'
+    return rna_seq
+
+# main program
+def rna_main():
+  while True:
+      print_menu()
+      try:
+        option = int(input("Enter an option here: "))
+        try:
+            if option == 0:
+                break # exit the program
+            elif option == 1:
+                dna_seq = input("Enter the DNA sequences (CAGT): ") # CACGTAGACTGAGGACTCCTCTTC
+                rna_seq = dna_to_rna(dna_seq)
+                print("The RNA sequences is:", rna_seq)
+            else:
+                print("We don't recognize the option " + option)
+        except:
+            pass
+      except:
+        print("We don't recognize the option")
+  print("Good Bye!")
 
 
 # runtime
@@ -164,7 +244,9 @@ if __name__ == '__main__':
             fun_fact()
           
         elif choice == 6: # reserved for Shale
-            pass
-
-        elif choice == 7: # reserved for Shale
-            pass
+            rna_main()
+            
+        elif choice == 7:
+            timeleftschool()
+        elif choice == 8: 
+            break
