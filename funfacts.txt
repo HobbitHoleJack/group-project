@@ -12,3 +12,9 @@ There are over 700 programming languages.
 We used the scrum framwework to make this!
 This is fun, and that's a fact.
 Almost all operating systems are witten in C.
+! is the logical NOT operator in most programming languages.
+Rust is faster than languages like C/C++, but	lacks an efficient garbage collection.
+Java and Javascript are not the same thing.
+Git/Github are both very useful for colaboration and version control.
+different programming languages are better for different use cases.
+IDE stands for integrated development environment

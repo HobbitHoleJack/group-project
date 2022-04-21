@@ -149,7 +149,7 @@ def multiples_of_num(): #Abhash
   amnt = int(input("Enter the desired amount of multiples: "))
 
   print(amnt, "multiples of", mult_num, ": ")
-  for i in range(1, amnt+1): #The +1 makes sure its the desired amount each time
+  for i in range(1, amnt+1):
     print(mult_num*i, end =" ")
   print("\n")
 
@@ -182,11 +182,13 @@ def print_menu(): #Shale
     print("1: DNA to RNA")
     print("0: Exit the program")
 
-dna_to_rna_dict = dict()
-dna_to_rna_dict['C'] = 'G'
-dna_to_rna_dict['A'] = 'U'
-dna_to_rna_dict['G'] = 'C'
-dna_to_rna_dict['T'] = 'A'
+dna_to_rna_dict = {
+  "C": "G", 
+  "A": "U",
+  "G": "C",
+  "T": "A"
+}
+
 def dna_to_rna(dna_seq):
     rna_seq = ""
     # iterate each character in the DNA sequences
